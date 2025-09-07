@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ModelProductionCase.Data;
 using ModelProductionCase.Models;
+using ModelProductionCase.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace ModelProductionCase.Controllers
@@ -8,9 +9,12 @@ namespace ModelProductionCase.Controllers
     public class ItemsController : Controller
     {
         private readonly ModelProductionContext _context;
-        public ItemsController(ModelProductionContext context)
+        private readonly IEventProducerService _eventProducer;
+
+        public ItemsController(ModelProductionContext context, IEventProducerService eventProducer)
         {
             _context = context;
+            _eventProducer = eventProducer;
         }
         public async Task<IActionResult> Index()
         {
@@ -21,13 +25,17 @@ namespace ModelProductionCase.Controllers
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost, ActionName("Create")]
         public async Task<IActionResult> Create([Bind("Id, Name, Status")] Item item)
         {
             if (ModelState.IsValid)
             {
                 _context.Items.Add(item);
                 await _context.SaveChangesAsync();
+
+                // Send event after successful creation
+                await _eventProducer.SendItemCreatedEventAsync(item);
+
                 return RedirectToAction("Index");
             }
             return View(item);
@@ -45,13 +53,17 @@ namespace ModelProductionCase.Controllers
             }
             return View(item);
         }
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         public async Task<IActionResult> Edit(int id, [Bind("Id, Name, Status")] Item item)
         {
             if (ModelState.IsValid)
             {
                 _context.Update(item);
                 await _context.SaveChangesAsync();
+
+                // Send event after successful update
+                await _eventProducer.SendItemUpdatedEventAsync(item);
+
                 return RedirectToAction("Index");
             }
             return View(item);
@@ -77,6 +89,9 @@ namespace ModelProductionCase.Controllers
             {
                 _context.Items.Remove(item);
                 await _context.SaveChangesAsync();
+
+                // Send event after successful deletion
+                await _eventProducer.SendItemDeletedEventAsync(id);
             }
             return RedirectToAction("Index");
         }
