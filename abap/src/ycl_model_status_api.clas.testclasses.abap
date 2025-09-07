@@ -16,6 +16,7 @@ ENDCLASS.
 
 CLASS ltcl_test IMPLEMENTATION.
   METHOD setup.
+    CLEAR payload.
     go_api = NEW ycl_model_status_api( ).
   ENDMETHOD.
 
@@ -32,7 +33,10 @@ CLASS ltcl_test IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD when_type_unknown.
-    RETURN.
+    payload-type = 'unknown'.
+    cl_abap_unit_assert=>assert_char_cp( act = go_api->process( payload )
+                                         exp = 'Unknown event type:*'
+                                         msg = 'Payload is empty, so it is invalid' ).
   ENDMETHOD.
 
   METHOD when_payload_invalid.

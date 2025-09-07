@@ -19,7 +19,9 @@ CLASS ycl_model_status_api DEFINITION PUBLIC FINAL CREATE PUBLIC.
           VALUE(is_valid) TYPE abap_bool,
       process
         IMPORTING
-          payload TYPE yif_model_status_api=>cloudevent.
+          payload TYPE yif_model_status_api=>cloudevent
+        RETURNING
+          VALUE(msg) TYPE string.
     CONSTANTS: c_type_created TYPE string VALUE yif_model_status_api=>c_type_created,
                c_type_updated TYPE string VALUE yif_model_status_api=>c_type_updated,
                c_type_deleted TYPE string VALUE yif_model_status_api=>c_type_deleted.
@@ -60,6 +62,7 @@ CLASS ycl_model_status_api IMPLEMENTATION.
         RETURN.
       WHEN OTHERS.
         " Handle unknown type scenario, call exception class, log error, etc.
+        msg = |Unknown event type: { payload-type }|.
         RETURN.
     ENDCASE.
   ENDMETHOD.
