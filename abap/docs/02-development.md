@@ -2,7 +2,7 @@
 
 **_Golden suggestions_**:
 
-1. Code the most decoupled possible way from existing objects or dependencies, leveraging built-in types and functionality as most as possible. Your abap objects should aim to only use existing objects inside its own folder, within reach of the super package or within reach of objects **owned** by your product team.
+1. Code the most decoupled possible way from existing objects or dependencies, leveraging built-in types and functionality as most as possible. Your abap objects should aim to only use existing objects inside its own folder, within reach of the super package or within reach of objects **owned** by your team.
 
 2. Write unit tests for your abap code using abap unit, like mentioned in our [testing](04-testing.md) guide.
 
@@ -58,7 +58,7 @@ Make sure to add abap unit tests to your classes.
 
 ## Pushing and Pulling code
 
-[Push your changes](#pushing-and-pulling-code) to the repository, following your product team's PR process, to get continuous integration feedback and surface your work.
+[Push your changes](#pushing-and-pulling-code) to the repository, following your team's PR process, to get continuous integration feedback and surface your work.
 
 If you have no PR process, suggest to open pull requests in draft mode as early as possible in the development phase, so your team can see the direction of your work and provide feedback on it as well.
 
