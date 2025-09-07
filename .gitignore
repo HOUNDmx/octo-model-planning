@@ -4,3 +4,8 @@ output
 .env
 local
 .vscode
+bin/
+obj/
+*Designer.cs
+appsettings.json
+appsettings.Development.json
