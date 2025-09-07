@@ -9,4 +9,4 @@ obj/
 *Designer.cs
 appsettings.json
 appsettings.Development.json
-wwwroot/lib/
+src/WebApplication1/wwwroot/lib/
