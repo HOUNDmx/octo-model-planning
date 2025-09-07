@@ -1,0 +1,31 @@
+{
+  "input_folder": "abap/downport",
+  "input_filter": [],
+  "output_folder": "abap/output",
+  "libs": [
+    {
+      "url": "https://github.com/open-abap/open-abap-core"
+    },
+    {
+      "url": "https://github.com/open-abap/open-abap-bal"
+    },
+    {
+      "url": "https://github.com/open-abap/open-abap-gui"
+    },
+    {
+      "url": "https://github.com/open-abap/shims-rfc"
+    },
+    {
+      "url": "https://github.com/open-abap/express-icf-shim"
+    }
+  ],
+  "write_unit_tests": true,
+  "write_source_map": true,
+  "options": {
+    "ignoreSyntaxCheck": false,
+    "addFilenames": true,
+    "addCommonJS": true,
+    "unknownTypes": "runtimeError",
+    "extraSetup": "../abap-test/setup.mjs"
+  }
+}

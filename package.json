@@ -1,0 +1,36 @@
+{
+  "name": "octo-model-planning",
+  "private": true,
+  "version": "1.0.0",
+  "description": "octo-model-planning",
+  "dependencies": {
+    "@abaplint/cli": "^2.113.196",
+    "@abaplint/database-sqlite": "^2.11.0",
+    "@abaplint/runtime": "^2.11.74",
+    "@abaplint/transpiler-cli": "^2.11.74",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "globals": "^15.8.0"
+  },
+  "scripts": {
+    "abap-transpile": "rm -rf abap/output && abap_transpile abap/abap-test/abap_transpile.json && echo Transpile completed...",
+    "abap-downport": "rm -rf abap/downport && cp -r abap/src/ abap/downport && abaplint --fix abaplint-downport.jsonc",
+    "unit": "node abap/output/index.mjs",
+    "abap-unit-tests": "node abap/output/index.mjs && echo Tests passed",
+    "tests": "npm run abap-downport && npm run abap-transpile && npm run abap-unit-tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/octo-model-planning.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/octo-model-planning/issues"
+  },
+  "homepage": "https://github.com/octo-model-planning#readme"
+}

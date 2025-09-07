@@ -1,0 +1,397 @@
+{
+  "global": {
+    "files": "/abap/src/**/*.*",
+    "skipGeneratedBOPFInterfaces": true,
+    "skipGeneratedFunctionGroups": true,
+    "skipGeneratedGatewayClasses": true,
+    "skipGeneratedPersistentClasses": true,
+    "skipGeneratedProxyClasses": true,
+    "skipGeneratedProxyInterfaces": true,
+    "skipIncludesWithoutMain": true
+  },
+  "dependencies": [
+    {
+      "url": "https://github.com/abaplint/deps",
+      "folder": "/deps",
+      "files": "/src/**/*.*"
+    },
+    {
+      "url": "https://github.com/open-abap/open-abap-core",
+      "files": "/src/**/*.*"
+    },
+    {
+      "files": "/**/*.*",
+      "folder": "/deps/ddic"
+    }
+  ],
+  "syntax": {
+    "version": "Cloud",
+    "errorNamespace": "."
+  },
+  "rules": {
+    "abapdoc": false,
+    "allowed_object_naming": true,
+    "ambiguous_statement": true,
+    "avoid_use": {
+      "break": true,
+      "define": true,
+      "defaultKey": true,
+      "describeLines": true,
+      "exclude": [],
+      "exportToMemory": true,
+      "exportToDatabase": true,
+      "severity": "Error",
+      "skipQuickFix": true,
+      "statics": true,
+      "testSeams": true
+    },
+    "begin_end_names": true,
+    "cds_parser_error": true,
+    "check_abstract": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "check_comments": {
+      "allowEndOfLine": false,
+      "exclude": [],
+      "severity": "Error"
+    },
+    "check_ddic": true,
+    "check_include": true,
+    "check_transformation_exists": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "check_text_elements": true,
+    "check_subrc": true,
+    "check_syntax": true,
+    "cloud_types": true,
+    "commented_code": true,
+    "constructor_visibility_public": true,
+    "cyclomatic_complexity": {
+      "exclude": [],
+      "severity": "Error",
+      "max": 6
+    },
+    "cyclic_oo": true,
+    "description_empty": true,
+    "dangerous_statement": {
+      "deleteDynpro": true,
+      "deleteReport": true,
+      "deleteTextpool": true,
+      "dynamicSQL": true,
+      "execSQL": true,
+      "exportDynpro": true,
+      "generateDynpro": true,
+      "generateReport": true,
+      "generateSubroutine": true,
+      "insertReport": true,
+      "insertTextpool": true,
+      "kernelCall": true,
+      "severity": "Error",
+      "systemCall": true
+    },
+    "downport": true,
+    "empty_line_in_statement": {
+      "exclude": [],
+      "severity": "Error",
+      "allowChained": false
+    },
+    "empty_statement": true,
+    "empty_structure": {
+      "at": true,
+      "case": true,
+      "do": true,
+      "exclude": [],
+      "if": true,
+      "loop": true,
+      "loopAllowIfSubrc": true,
+      "severity": "Error",
+      "select": true,
+      "try": true,
+      "while": true,
+      "when": true
+    },
+    "exporting": true,
+    "forbidden_void_type": {
+      "check": [
+        "CL_SQL_STATEMENT",
+        "CL_SQL_PREPARED_STATEMENT",
+        "CL_SQL_CONNECTION",
+        "CX_SQL_EXCEPTION"
+      ]
+    },
+    "form_tables_obsolete": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "fully_type_constants": true,
+    "functional_writing": {
+      "exclude": [],
+      "ignoreExceptions": false,
+      "severity": "Error"
+    },
+    "function_module_recommendations": {
+      "exclude": [],
+      "severity": "Error",
+      "recommendations": [
+        {
+          "name": "CALCULATE_HASH_FOR_RAW",
+          "replace": "use CL_ABAP_HMAC or CL_ABAP_MESSAGE_DIGEST"
+        },
+        {
+          "name": "CCU_TIMESTAMP_DIFFERENCE",
+          "replace": "use CL_ABAP_TSTMP"
+        },
+        {
+          "name": "CONVERT_DATE_TO_EXTERNAL",
+          "replace": "use CL_ABAP_DATFM"
+        },
+        {
+          "name": "CONVERT_TIME_INPUT",
+          "replace": "use CL_ABAP_TIMEFM"
+        },
+        {
+          "name": "ECATT_CONV_XSTRING_TO_STRING",
+          "replace": "use CL_BINARY_CONVERT"
+        },
+        {
+          "name": "F4_FILENAME",
+          "replace": "use CL_GUI_FRONTEND_SERVICES"
+        },
+        {
+          "name": "FUNCTION_EXISTS",
+          "replace": "surround with try-catch CX_SY_DYN_CALL_ILLEGAL_METHOD instead"
+        },
+        {
+          "name": "GUI_DOWNLOAD",
+          "replace": "use CL_GUI_FRONTEND_SERVICES"
+        },
+        {
+          "name": "GUI_UPLOAD",
+          "replace": "use CL_GUI_FRONTEND_SERVICES"
+        },
+        {
+          "name": "GUID_CREATE",
+          "replace": "use CL_SYSTEM_UUID"
+        },
+        {
+          "name": "IGN_TIMESTAMP_DIFFERENCE",
+          "replace": "use CL_ABAP_TSTMP"
+        },
+        {
+          "name": "IGN_TIMESTAMP_PLUSMINUS",
+          "replace": "use CL_ABAP_TSTMP"
+        },
+        {
+          "name": "ISM_SD_GET_PRICING_CONDITIONS",
+          "replace": "use CL_PRC_RESULT_FACTORY as per note 2220005"
+        },
+        {
+          "name": "JOB_CREATE",
+          "replace": "use CL_BP_ABAP_JOB"
+        },
+        {
+          "name": "JOB_SUBMIT",
+          "replace": "use CL_BP_ABAP_JOB"
+        },
+        {
+          "name": "POPUP_TO_CONFIRM_STEP",
+          "replace": "use POPUP_TO_CONFIRM"
+        },
+        {
+          "name": "POPUP_TO_DECIDE",
+          "replace": "use POPUP_TO_CONFIRM"
+        },
+        {
+          "name": "POPUP_TO_GET_VALUE",
+          "replace": "use POPUP_GET_VALUES"
+        },
+        {
+          "name": "QF05_RANDOM_INTEGER",
+          "replace": "use CL_ABAP_RANDOM_INT"
+        },
+        {
+          "name": "REUSE_ALV_GRID_DISPLAY",
+          "replace": "use CL_SALV_TABLE=>FACTORY or CL_GUI_ALV_GRID"
+        },
+        {
+          "name": "ROUND",
+          "replace": "use built in function: round()"
+        },
+        {
+          "name": "SAPGUI_PROGRESS_INDICATOR",
+          "replace": "use CL_PROGRESS_INDICATOR"
+        },
+        {
+          "name": "SCMS_BASE64_DECODE_STR",
+          "replace": "use class CL_HTTP_UTILITY methods"
+        },
+        {
+          "name": "SCMS_STRING_TO_XSTRING",
+          "replace": "use CL_BINARY_CONVERT"
+        },
+        {
+          "name": "SO_NEW_DOCUMENT_ATT_SEND_API1",
+          "replace": "use CL_BCS"
+        },
+        {
+          "name": "SSFC_BASE64_DECODE",
+          "replace": "use class CL_HTTP_UTILITY methods"
+        },
+        {
+          "name": "SSFC_BASE64_ENCODE",
+          "replace": "use class CL_HTTP_UTILITY methods"
+        },
+        {
+          "name": "SUBST_GET_FILE_LIST",
+          "replace": "see note 1686357"
+        },
+        {
+          "name": "WS_FILENAME_GET",
+          "replace": "use CL_GUI_FRONTEND_SERVICES"
+        }
+      ]
+    },
+    "global_class": true,
+    "identical_form_names": true,
+    "identical_conditions": true,
+    "if_in_if": true,
+    "implement_methods": true,
+    "indentation": true,
+    "inline_data_old_versions": true,
+    "keyword_case": true,
+    "keep_single_parameter_on_one_line": {
+      "exclude": [],
+      "length": 120,
+      "severity": "Error"
+    },
+    "line_length": {
+      "exclude": [],
+      "length": 120,
+      "severity": "Error"
+    },
+    "line_break_multiple_parameters": true,
+    "local_testclass_consistency": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "main_file_contents": true,
+    "max_one_statement": true,
+    "message_exists": true,
+    "method_implemented_twice": true,
+    "method_length": {
+      "checkForms": true,
+      "exclude": [],
+      "errorWhenEmpty": true,
+      "ignoreTestClasses": true,
+      "severity": "Error",
+      "statements": 100
+    },
+    "method_overwrites_builtin": true,
+    "mix_returning": true,
+    "msag_consistency": true,
+    "nesting": {
+      "exclude": [],
+      "severity": "Error",
+      "depth": 5
+    },
+    "names_no_dash": true,
+    "newline_between_methods": true,
+    "no_public_attributes": {
+      "exclude": [],
+      "severity": "Error",
+      "allowReadOnly": true,
+      "ignoreTestClasses": true
+    },
+    "obsolete_statement": {
+      "add": true,
+      "compute": true,
+      "communication": true,
+      "callTransformation": true,
+      "clientSpecified": true,
+      "divide": true,
+      "exclude": [],
+      "exitFromSQL": true,
+      "fieldSymbolStructure": true,
+      "formDefinition": true,
+      "formImplementation": true,
+      "freeMemory": true,
+      "load": true,
+      "multiply": true,
+      "move": true,
+      "occurs": true,
+      "occurences": true,
+      "parameter": true,
+      "pack": true,
+      "ranges": true,
+      "refresh": true,
+      "requested": true,
+      "regex": true,
+      "severity": "Error",
+      "subtract": true,
+      "selectWithoutInto": true,
+      "setExtended": true,
+      "sortByFS": true,
+      "typePools": true,
+      "withHeaderLine": true
+    },
+    "parser_error": true,
+    "parser_missing_space": true,
+    "prefer_returning_to_exporting": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "prefer_inline": true,
+    "prefer_is_not": true,
+    "preferred_compare_operator": {
+      "badOperators": [
+        "EQ",
+        "><",
+        "NE",
+        "GE",
+        "GT",
+        "LT",
+        "LE"
+      ],
+      "exclude": [],
+      "severity": "Error"
+    },
+    "prefix_is_current_class": true,
+    "reduce_string_templates": true,
+    "rfc_error_handling": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "short_case": {
+      "allow": [],
+      "exclude": [],
+      "length": 1,
+      "severity": "Error"
+    },
+    "sequential_blank": {
+      "lines": 3
+    },
+    "sicf_consistency": true,
+    "sql_escape_host_variables": true,
+    "strict_sql": true,
+    "static_call_via_instance": true,
+    "superclass_final": true,
+    "tabl_enhancement_category": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "try_without_catch": true,
+    "uncaught_exception": true,
+    "unknown_types": true,
+    "unused_variables": true,
+    "unreachable_code": true,
+    "unnecessary_chaining": true,
+    "use_new": true,
+    "use_bool_expression": true,
+    "use_line_exists": true,
+    "use_class_based_exceptions": true,
+    "when_others_last": true,
+    "xml_consistency": true
+  }
+}
