@@ -53,6 +53,10 @@ components:
         type:
           type: string
           description: Message type, matches the type name in the spec.
+          enum:
+            - com.modelproductioncase.item.created
+            - com.modelproductioncase.item.updated
+            - com.modelproductioncase.item.deleted
         id:
           type: string
           format: uuid
