@@ -15,4 +15,8 @@ INTERFACE yif_model_status_api PUBLIC.
            data            TYPE ty_payload,
          END OF cloudevent.
 
+  CONSTANTS: c_type_created TYPE string VALUE 'com.modelproductioncase.item.created',
+             c_type_updated TYPE string VALUE 'com.modelproductioncase.item.updated',
+             c_type_deleted TYPE string VALUE 'com.modelproductioncase.item.deleted'.
+
 ENDINTERFACE.

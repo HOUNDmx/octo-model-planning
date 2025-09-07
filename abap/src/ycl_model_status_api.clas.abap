@@ -20,6 +20,9 @@ CLASS ycl_model_status_api DEFINITION PUBLIC FINAL CREATE PUBLIC.
       process
         IMPORTING
           payload TYPE yif_model_status_api=>cloudevent.
+    CONSTANTS: c_type_created TYPE string VALUE yif_model_status_api=>c_type_created,
+               c_type_updated TYPE string VALUE yif_model_status_api=>c_type_updated,
+               c_type_deleted TYPE string VALUE yif_model_status_api=>c_type_deleted.
 ENDCLASS.
 
 CLASS ycl_model_status_api IMPLEMENTATION.
@@ -46,13 +49,13 @@ CLASS ycl_model_status_api IMPLEMENTATION.
 
   METHOD process.
     CASE payload-type.
-      WHEN 'create'.
+      WHEN c_type_created.
         " Handle create logic, e.g., insert into database
         RETURN.
-      WHEN 'update'.
+      WHEN c_type_updated.
         " Handle update logic, e.g., modify existing record
         RETURN.
-      WHEN 'delete'.
+      WHEN c_type_deleted.
         " Handle delete logic, e.g., remove record from database
         RETURN.
       WHEN OTHERS.
