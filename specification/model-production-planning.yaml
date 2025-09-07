@@ -1,17 +1,17 @@
 asyncapi: 2.6.0
 info:
   title: model-production-planning
-  description: Orchestrates different events related to literate-octo-train
+  description: Orchestrates different events related to octo-model-planning
   version: 1.0.0
   license:
     name: internal
   contact:
-    name: literate-octo-train Team
+    name: octo-model-planning Team
     url: >-
-      https://github.com/houndmx/literate-octo-train
+      https://github.com/houndmx/octo-model-planning
 externalDocs:
   description: Source repository
-  url: https://github.com/houndmx/literate-octo-train
+  url: https://github.com/houndmx/octo-model-planning
 channels:
   model-plan.v1:
     bindings:
