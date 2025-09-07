@@ -1,0 +1,135 @@
+asyncapi: 2.6.0
+info:
+  title: model-production-planning
+  description: Orchestrates different events related to octo-model-planning
+  version: 1.0.0
+  license:
+    name: internal
+  contact:
+    name: octo-model-planning Team
+    url: >-
+      https://github.com/houndmx/octo-model-planning
+externalDocs:
+  description: Source repository
+  url: https://github.com/houndmx/octo-model-planning
+channels:
+  model-plan.v1:
+    bindings:
+      pulsar:
+        persistence: persistent
+        compaction: 0
+        retention:
+          time: -1
+          size: -1
+        ttl: 86400
+        deduplication: false
+    x-classification: green
+    description: Model plans channel. Used to send data of model plans.
+    publish:
+      message:
+        $ref: '#/components/messages/model-plan.v1'
+components:
+  messages:
+    model-plan.v1:
+      payload:
+        $ref: '#/components/schemas/model-plan.v1.message'
+  schemas:
+    cloud-event-meta:
+      title: Cloud Event metadata
+      type: object
+      required:
+        - specversion
+        - id
+        - source
+        - type
+        - datacontenttype
+        - time
+        - expirytime
+      discriminator: type
+      properties:
+        specversion:
+          type: string
+          description: The version of the CloudEvents specification which the event uses.
+        type:
+          type: string
+          description: Message type, matches the type name in the spec.
+        id:
+          type: string
+          format: uuid
+          description: UUID that identifies the event.
+          minLength: 36
+        source:
+          type: string
+          format: uri-reference
+          description: Identifies the context in which an event happened.
+        datacontenttype:
+          type: string
+          description: Content type of the data value. Must adhere to RFC 2046 format.
+        time:
+          type: string
+          format: date-time
+          description: Timestamp of when the occurrence happened. Must adhere to RFC 3339.
+        expirytime:
+          type: string
+          format: date-time
+          description: Timestamp of when the event should be considered expired and can be ignored. Must adhere to RFC 3339.
+    model-plan.v1.message:
+      title: Model Plan V1
+      allOf:
+        - $ref: '#/components/schemas/cloud-event-meta'
+        - title: Model Plan
+          oneOf:
+            - $ref: '#/components/schemas/model-plan.v1.create'
+            - $ref: '#/components/schemas/model-plan.v1.update'
+            - $ref: '#/components/schemas/model-plan.v1.delete'
+    model-plan.v1.create:
+      type: object
+      title: Create a model plan
+      properties:
+        data:
+          type: object
+          required:
+            - id
+            - description
+            - status
+          properties:
+            id:
+              type: string
+            description:
+              type: string
+            status:
+              type: string
+              enum:
+                - NOT STARTED
+                - IN PROGRESS
+                - COMPLETED
+    model-plan.v1.update:
+      type: object
+      title: Update a model plan
+      properties:
+        data:
+          type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
+            description:
+              type: string
+            status:
+              type: string
+              enum:
+                - NOT STARTED
+                - IN PROGRESS
+                - COMPLETED
+    model-plan.v1.delete:
+      type: object
+      title: Delete a model plan
+      properties:
+        data:
+          type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
